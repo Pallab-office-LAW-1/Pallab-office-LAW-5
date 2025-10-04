@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Advocate Pallab Kumar Gorain — Portfolio</title>
+
+  <!-- Fonts (system-first, fallbacks) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <meta name="description" content="Advocate Pallab Kumar Gorain — law student & practicing intern. Purulia District Court. Contact for consultation.">
+
+  <style>
+    /* =========================
+       Variables & Base
+       ========================= */
+    :root{
+      --bg: #eaf4ff;
+      --card: #ffffff;
+      --text: #05243a;
+      --muted: #3b5c73;
+      --primary: #1e6fb8;      /* blue theme */
+      --primary-700: #155a94;
+      --accent: #0ea5a4;
+      --glass: rgba(255,255,255,0.55);
+      --radius: 12px;
+      --shadow: 0 8px 28px rgba(10, 36, 63, 0.08);
+      --glass-shadow: 0 6px 18px rgba(10, 36, 63, 0.06);
+      --nav-height: 64px;
+      --focus: 3px solid rgba(30,111,184,0.18);
+    }
+
+    /* Dark theme overrides */
+    .dark {
+      --bg: #021224;
+      --card: #071626;
+      --text: #dbeeff;
+      --muted: #9fc6ea;
+      --primary: #2ea0ff;
+      --primary-700: #1f86e6;
+      --glass: rgba(10,18,28,0.6);
+      --shadow: 0 10px 30px rgba(0,0,0,0.6);
+      --glass-shadow: 0 6px 20px rgba(0,0,0,0.45);
+      --focus: 3px solid rgba(46,160,255,0.14);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, var(--bg), #ffffff00);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding-top: var(--nav-height);
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block;height:auto;border-radius:8px}
+
+    /* =========================
+       Navigation (sticky + mobile)
+       ========================= */
+    header.site-nav{
+      height:var(--nav-height);
+      width:100%;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:1200;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      padding:0 1rem;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.03));
+      backdrop-filter: blur(6px);
+      transition:background-color .25s ease, box-shadow .25s ease, transform .2s ease;
+    }
+
+    header.site-nav.scrolled{
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.55));
+      box-shadow: 0 6px 18px rgba(10,36,63,0.08);
+    }
+    .dark header.site-nav.scrolled{
+      background: linear-gradient(180deg, rgba(3,10,18,0.65), rgba(3,10,18,0.55));
+    }
+
+    .brand{
+      display:flex;
+      gap:.75rem;
+      align-items:center;
+      font-weight:700;
+      color:var(--primary);
+    }
+    .brand .logo{
+      width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--primary-700));
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-family:"Roboto Mono", monospace;
+      box-shadow:var(--shadow);
+    }
+
+    nav.main-nav{
+      display:flex;
+      gap:1rem;
+      align-items:center;
+    }
+
+    nav.main-nav a{
+      padding:.45rem .6rem;
+      border-radius:8px;
+      font-weight:600;
+      color:var(--muted);
+      transition: background .12s ease, color .12s ease, transform .12s ease;
+    }
+    nav.main-nav a:hover{background:var(--glass); color:var(--text); transform:translateY(-2px)}
+
+    /* mobile menu button */
+    .menu-btn{
+      display:flex;
+      border:0; background:transparent; cursor:pointer;
+      align-items:center; gap:.6rem; padding:.4rem;
+      border-radius:8px;
+      color:var(--muted);
+    }
+    .menu-btn:focus{outline:var(--focus)}
+
+    /* slide-in panel */
+    .mobile-panel{
+      position:fixed;
+      right:-100%;
+      top:0;
+      height:100vh;
+      width:min(86vw,360px);
+      background:var(--card);
+      box-shadow: 0 24px 60px rgba(5,13,25,0.24);
+      transition:right .32s cubic-bezier(.2,.9,.25,1), opacity .28s linear;
+      z-index:1300;
+      padding:var(--nav-height) 1rem 2rem;
+      overflow-y:auto;
+    }
+    .mobile-panel.open{ right:0 }
+    .mobile-panel a{ display:block; padding:.9rem .6rem; border-radius:8px; margin-bottom:.4rem; color:var(--text) }
+    .mobile-panel .close{ color:var(--muted); font-weight:700; margin-bottom:1rem }
+
+    /* =========================
+       Hero (mobile-first)
+       ========================= */
+    .hero{
+      max-width:1100px;
+      margin:1.2rem auto;
+      padding:1.4rem;
+      display:grid;
+      gap:1rem;
+      grid-template-columns: 1fr;
+      align-items:center;
+    }
+
+    .hero-card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:1.1rem;
+      box-shadow:var(--glass-shadow);
+      display:flex;
+      gap:1rem;
+      align-items:center;
+    }
+
+    .hero-left{
+      display:flex;
+      gap:1rem;
+      align-items:center;
+      width:100%;
+    }
+
+    .avatar{
+      flex:0 0 96px;
+      width:96px;height:96px;border-radius:50%;
+      border:4px solid rgba(30,111,184,0.12);
+      overflow:hidden;
+      position:relative;
+      background:linear-gradient(135deg, rgba(30,111,184,0.06), rgba(30,111,184,0.02));
+      box-shadow: 0 8px 24px rgba(30,111,184,0.06);
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover}
+
+    .hero-info{
+      flex:1;
+      min-width:0;
+    }
+    .hero-info h1{font-size:1.05rem;margin:0;color:var(--primary)}
+    .hero-info h2{margin:.2rem 0 .5rem;font-size:1.05rem;color:var(--text);font-weight:700}
+    .hero-info p{margin:0;color:var(--muted);font-size:.95rem}
+
+    .hero-actions{display:flex;gap:.6rem;margin-top:.8rem;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:.6rem;
+      padding:.6rem .9rem;border-radius:10px;border:0;cursor:pointer;font-weight:700;
+      background:linear-gradient(90deg,var(--primary),var(--primary-700));
+      color:white; box-shadow: 0 8px 24px rgba(30,111,184,0.16);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .btn:hover{ transform: translateY(-3px) }
+    .btn:active{ transform: translateY(1px); box-shadow: 0 6px 16px rgba(30,111,184,0.12) }
+    .btn.ghost{ background:transparent;color:var(--primary); box-shadow:none;border:1px solid rgba(30,111,184,0.12) }
+
+    /* rotating badge (overlay on avatar) */
+    .badge{
+      position:absolute;
+      right:-6px; bottom:-6px;
+      background:var(--primary);
+      color:white; font-weight:700;
+      width:46px; height:46px; display:flex; align-items:center; justify-content:center;
+      border-radius:50%; box-shadow:var(--shadow);
+      transform-origin:center;
+      animation: spin-slow 12s linear infinite;
+      font-size:11px;
+      text-align:center;
+      padding:6px;
+    }
+    @keyframes spin-slow{ from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+    /* =========================
+       About, Services, Projects, Contact
+       ========================= */
+    main.container{ max-width:1100px;margin:1rem auto;padding:0 1rem 4rem }
+
+    section.card{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:1.2rem;
+      margin-bottom:1rem;
+    }
+
+    .grid{
+      display:grid;
+      gap:1rem;
+      grid-template-columns:1fr;
+    }
+
+    .skills{
+      display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.8rem;
+    }
+    .skill{
+      background:linear-gradient(180deg, rgba(30,111,184,0.08), rgba(30,111,184,0.03));
+      color:var(--primary);
+      padding:.45rem .7rem;border-radius:999px;font-weight:700;font-size:.9rem;
+      box-shadow: 0 6px 16px rgba(30,111,184,0.04);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .skill:hover{ transform: translateY(-4px); box-shadow: 0 10px 28px rgba(30,111,184,0.12) }
+
+    .timeline{
+      display:flex;flex-direction:column;gap:1rem;margin-top:.6rem;
+    }
+    .timeline .item{
+      border-left:3px solid var(--primary);
+      padding-left:1rem;
+      background:linear-gradient(90deg, transparent, rgba(30,111,184,0.02));
+      border-radius:6px;
+    }
+    .references{ display:grid; gap:.8rem }
+
+    /* Projects cards */
+    .projects-grid{ display:grid; gap:1rem; grid-template-columns:1fr }
+    .project{
+      position:relative; overflow:hidden; border-radius:10px; background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .project:hover{ transform: translateY(-6px); box-shadow: 0 20px 40px rgba(5,13,25,0.08) }
+    .project .meta{ padding:.9rem }
+    .project .meta h4{ margin:.1rem 0 .4rem }
+    .project .meta p{ margin:0;color:var(--muted) }
+
+    /* contact form */
+    form .row{ display:flex; gap:.6rem; flex-direction:column }
+    form input, form textarea{
+      width:100%; padding:.7rem; border-radius:8px; border:1px solid rgba(10,10,10,0.06);
+      background:transparent; color:var(--text); font-size:1rem;
+    }
+    form button[type="submit"]{ margin-top:.6rem }
+
+    /* Footer */
+    footer.site-footer{
+      background:linear-gradient(180deg, var(--primary-700), var(--primary));
+      color:white; padding:1.6rem; border-radius:8px; margin:1.2rem;
+      display:flex; flex-direction:column; gap:.5rem; align-items:center; justify-content:center;
+    }
+
+    /* =========================
+       Larger screens layout
+       ========================= */
+    @media(min-width:720px){
+      .hero{ grid-template-columns: 1fr 1fr; gap:1.2rem }
+      .hero-card{ flex-direction:column; align-items:flex-start }
+      .projects-grid{ grid-template-columns: repeat(2, 1fr) }
+      .grid{ grid-template-columns: repeat(2, 1fr) }
+    }
+
+    @media(min-width:1000px){
+      main.container{ padding:0 1.6rem }
+      .projects-grid{ grid-template-columns: repeat(3, 1fr) }
+      .avatar{ width:128px;height:128px;flex:0 0 128px }
+      .hero-info h1{ font-size:1.1rem }
+      .hero-info h2{ font-size:1.5rem }
+    }
+
+    /* small tweaks for accessibility */
+    .sr-only{ position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0 }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="site-nav" id="siteNav" role="banner" aria-label="Primary">
+    <div class="brand" aria-hidden="false">
+      <div class="logo" aria-hidden="true">PK</div>
+      <div>
+        <div style="font-size:.95rem">PKG</div>
+        <div style="font-size:.75rem;color:var(--muted);margin-top:2px">Advocate — Pallab Kumar Gorain</div>
+      </div>
+    </div>
+
+    <nav class="main-nav" role="navigation" aria-label="Main navigation" id="mainNav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <button class="menu-btn" id="themeToggle" aria-pressed="false" title="Toggle theme">
+        <span id="themeIcon" aria-hidden="true">🌙</span>
+        <span class="sr-only">Toggle dark/light theme</span>
+      </button>
+
+      <!-- mobile hamburger -->
+      <button class="menu-btn" id="hamburger" aria-expanded="false" aria-controls="mobilePanel" title="Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span class="sr-only">Open menu</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile slide panel -->
+  <aside class="mobile-panel" id="mobilePanel" aria-hidden="true">
+    <button class="close" id="mobileClose" aria-label="Close menu">✕ Close</button>
+    <a href="#home" class="mobile-link">Home</a>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#experience" class="mobile-link">Experience</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="https://wa.me/qr/SOTWGEYA74EMM1" target="_blank" rel="noopener noreferrer" class="mobile-link">WhatsApp</a>
+    <a href="#" class="mobile-link">Download Resume</a>
+  </aside>
+
+  <!-- Hero -->
+  <main class="container" id="home">
+    <section class="hero card" aria-labelledby="heroTitle">
+      <div class="hero-left" style="position:relative">
+        <div class="avatar" aria-hidden="false">
+          <img src="https://raw.githubusercontent.com/Pallab-office-LAW-1/Pallab-office-LAW-5/85e4977699c452b6bf095a2518b6680e23edb264/seedream-image%20(1).jpeg" alt="Pallab Kumar Gorain — hero image">
+          <span class="badge" title="Committed to Justice">⚖️</span>
+        </div>
+
+        <div class="hero-info">
+          <h1 id="heroTitle">Welcome — Namaste!</h1>
+          <h2>Advocate Pallab Kumar Gorain</h2>
+          <p>Driven by passion, purpose, and professionalism in India's justice system.</p>
+
+          <div class="hero-actions">
+            <a class="btn" href="#contact">Schedule Consultation</a>
+            <a class="btn ghost" href="resume.pdf" download>My Resume</a>
+            <a class="btn" href="https://wa.me/qr/SOTWGEYA74EMM1" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:center;min-height:120px">
+        <!-- supportive image (Lady Justice) -->
+        <img src="https://raw.githubusercontent.com/Pallab-office-LAW-1/Pallab-office-LAW-5/85e4977699c452b6bf095a2518b6680e23edb264/lady-justice-C6l91QTL.jpg" alt="Lady Justice" style="max-width:220px;border-radius:10px;box-shadow:var(--shadow)">
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="card" aria-labelledby="aboutTitle">
+      <h3 id="aboutTitle">About Me</h3>
+      <p style="color:var(--muted)">I'm Pallab Kumar Gorain, a committed and enthusiastic law student pursuing a B.A.LL.B. at Imamul Hai Khan Law College, Bokaro, and practising at the Purulia District Court, West Bengal. Driven by passion and integrity — "Justice is not a service—it's a duty."</p>
+
+      <div class="grid" style="margin-top:1rem">
+        <div>
+          <img src="https://raw.githubusercontent.com/Pallab-office-LAW-1/Pallab-office-LAW-5/85e4977699c452b6bf095a2518b6680e23edb264/1759575945853.jpg" alt="Actress-style profile image">
+        </div>
+        <div>
+          <h4>Areas of Legal Interest</h4>
+          <div class="skills" aria-hidden="false">
+            <span class="skill">Criminal Law</span>
+            <span class="skill">Family Law</span>
+            <span class="skill">Constitutional Law</span>
+            <span class="skill">Property Law</span>
+            <span class="skill">Legal Drafting</span>
+            <span class="skill">Legal Research</span>
+          </div>
+
+          <h4 style="margin-top:1rem">Academic Journey & Court Practice</h4>
+          <div class="timeline" role="list">
+            <div class="item" role="listitem"><strong>2021</strong> — Enrolled in B.A.LL.B. at Imamul Hai Khan Law College.</div>
+            <div class="item" role="listitem"><strong>2022</strong> — Began court practice at Purulia District Court.</div>
+            <div class="item" role="listitem"><strong>2023</strong> — Focused on legal research and documentation.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="card" aria-labelledby="servicesTitle">
+      <h3 id="servicesTitle">Services & Expertise</h3>
+      <div style="margin-top:.6rem; display:grid; gap:.8rem;">
+        <div class="service" style="display:flex;gap:.8rem;align-items:flex-start">
+          <div style="width:44px;height:44px;background:linear-gradient(135deg,var(--primary),var(--primary-700));border-radius:10px;color:white;display:flex;align-items:center;justify-content:center;font-weight:800">C</div>
+          <div>
+            <h4 style="margin:.1rem 0">Criminal Law</h4>
+            <p style="margin:0;color:var(--muted)">FIRs, bail, IPC offences, and criminal procedures.</p>
+          </div>
+        </div>
+
+        <div class="service" style="display:flex;gap:.8rem;align-items:flex-start">
+          <div style="width:44px;height:44px;background:linear-gradient(135deg,var(--primary),var(--primary-700));border-radius:10px;color:white;display:flex;align-items:center;justify-content:center;font-weight:800">F</div>
+          <div>
+            <h4 style="margin:.1rem 0">Family Law</h4>
+            <p style="margin:0;color:var(--muted)">Divorce, maintenance, domestic violence, guardianship.</p>
+          </div>
+        </div>
+
+        <div class="service" style="display:flex;gap:.8rem;align-items:flex-start">
+          <div style="width:44px;height:44px;background:linear-gradient(135deg,var(--primary),var(--primary-700));border-radius:10px;color:white;display:flex;align-items:center;justify-content:center;font-weight:800">R</div>
+          <div>
+            <h4 style="margin:.1rem 0">Research & Drafting</h4>
+            <p style="margin:0;color:var(--muted)">Legal drafting, research using SCC Online & Indian Kanoon.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects / Experience -->
+    <section id="experience" class="card" aria-labelledby="expTitle">
+      <h3 id="expTitle">Academic & Practical Experience</h3>
+
+      <div class="projects-grid" style="margin-top:1rem">
+        <article class="project" aria-labelledby="p1">
+          <div style="padding:1rem">
+            <h4 id="p1">Beginning Court Practice</h4>
+            <p style="color:var(--muted)">Real-time practice at Purulia District Court, handling filings and court procedures.</p>
+          </div>
+        </article>
+
+        <article class="project" aria-labelledby="p2">
+          <div style="padding:1rem">
+            <h4 id="p2">Legal Research</h4>
+            <p style="color:var(--muted)">Research & documentation for cases and petitions.</p>
+          </div>
+        </article>
+
+        <article class="project" aria-labelledby="p3">
+          <div style="padding:1rem">
+            <h4 id="p3">Preparing for Legal Career</h4>
+            <p style="color:var(--muted)">Continuing education and practical experience toward independent practice.</p>
+          </div>
+        </article>
+      </div>
+
+    </section>
+
+    <!-- References -->
+    <section class="card" aria-labelledby="refTitle">
+      <h3 id="refTitle">Academic & Professional References</h3>
+      <div class="references" style="margin-top:.6rem">
+        <blockquote style="margin:0;padding:.8rem;border-left:3px solid var(--primary);background:transparent;border-radius:6px">
+          <p style="margin:0;color:var(--muted)"><strong>Senior Advocate M. Sharma</strong> — "Pallab's dedication to understanding legal concepts and practical application is impressive. A promising future lawyer."</p>
+        </blockquote>
+
+        <blockquote style="margin:0;padding:.8rem;border-left:3px solid var(--primary);background:transparent;border-radius:6px">
+          <p style="margin:0;color:var(--muted)"><strong>Prof. R. Das</strong> — "His research skills and attention to detail in legal documentation are exceptional."</p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="card" aria-labelledby="contactTitle">
+      <h3 id="contactTitle">Contact & Appointment</h3>
+      <p style="color:var(--muted)">Ready to discuss your legal matter? Use the form below or connect on WhatsApp.</p>
+
+      <!-- NOTE: Replace the action URL with your Formspree / Web3Forms endpoint and access key -->
+      <form id="contactForm" method="POST" action="https://formspree.io/f/your-form-id" style="margin-top:1rem">
+        <div class="row">
+          <input type="text" name="name" placeholder="Full Name *" required aria-required="true">
+          <input type="email" name="email" placeholder="Email Address *" required aria-required="true">
+          <input type="tel" name="phone" placeholder="Phone Number" inputmode="tel" autocomplete="tel">
+          <textarea name="message" rows="5" placeholder="Brief Description *" required aria-required="true"></textarea>
+        </div>
+
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.6rem">
+          <button class="btn" type="submit">Send Appointment Request</button>
+          <a class="btn ghost" href="mailto:pallabgorain50@gmail.com">Email: pallabgorain50@gmail.com</a>
+          <a class="btn ghost" href="tel:+918145760110">Call: +91-8145760110</a>
+        </div>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <strong>PKG — Pallab Kumar Gorain</strong>
+        <small>Purulia Court, Purulia, West Bengal</small>
+        <small>pallabgorain50@gmail.com | +91-8145760110</small>
+        <div style="margin-top:.6rem;display:flex;gap:.6rem">
+          <a href="https://wa.me/qr/SOTWGEYA74EMM1" target="_blank" rel="noopener noreferrer" class="btn" style="background:white;color:var(--primary)">WhatsApp</a>
+          <a href="#" class="btn ghost" style="border-color:rgba(255,255,255,0.2);color:white">Quick Resume</a>
+        </div>
+        <small style="opacity:.9;margin-top:.6rem">© 2025 Pallab Kumar Gorain. All rights reserved.</small>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Immediately apply saved theme or system preference
+    (function(){
+      const root = document.documentElement;
+      const stored = localStorage.getItem('pkg_theme');
+      if(stored === 'dark') root.classList.add('dark');
+      else if(!stored && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+        root.classList.add('dark');
+      }
+    })();
+
+    // Elements
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const htmlRoot = document.documentElement;
+    const hamburger = document.getElementById('hamburger');
+    const mobilePanel = document.getElementById('mobilePanel');
+    const mobileClose = document.getElementById('mobileClose');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    const siteNav = document.getElementById('siteNav');
+
+    function updateThemeIcon(){
+      const dark = document.documentElement.classList.contains('dark');
+      themeIcon.textContent = dark ? '☀️' : '🌙';
+      themeToggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    }
+    updateThemeIcon();
+
+    themeToggle.addEventListener('click', () => {
+      const dark = htmlRoot.classList.toggle('dark');
+      localStorage.setItem('pkg_theme', dark ? 'dark' : 'light');
+      updateThemeIcon();
+    });
+
+    // Mobile menu open/close
+    hamburger.addEventListener('click', () => {
+      const open = mobilePanel.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      mobilePanel.setAttribute('aria-hidden', !open);
+      if(open) mobilePanel.focus();
+    });
+    mobileClose.addEventListener('click', () => {
+      mobilePanel.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobilePanel.setAttribute('aria-hidden', 'true');
+    });
+
+    // Close mobile panel when a link is clicked
+    mobileLinks.forEach(a => {
+      a.addEventListener('click', () => {
+        mobilePanel.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobilePanel.setAttribute('aria-hidden', 'true');
+      });
+    });
+
+    // Add / remove scrolled class to nav
+    const scrolledClass = 'scrolled';
+    function onScroll(){
+      if(window.scrollY > 8) siteNav.classList.add(scrolledClass);
+      else siteNav.classList.remove(scrolledClass);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Mobile-friendly form: minimal client-side check and graceful success UX
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', function(e){
+      // Let the form submit naturally to the action (Formspree / provider)
+      // But provide immediate feedback UI:
+      const submit = this.querySelector('button[type="submit"]');
+      submit.disabled = true;
+      submit.textContent = 'Sending...';
+      // After a timeout restore (in case provider redirects)
+      setTimeout(()=> {
+        submit.disabled = false;
+        submit.textContent = 'Send Appointment Request';
+      }, 3000);
+    });
+
+    // Ensure nav links smooth-scroll and close mobile panel
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (ev)=>{
+        const href = a.getAttribute('href');
+        if(href.length>1){
+          // let browser handle smooth scroll (css scroll-behavior)
+          // If mobile panel open, close it
+          if(mobilePanel.classList.contains('open')){
+            mobilePanel.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            mobilePanel.setAttribute('aria-hidden', 'true');
+          }
+        }
+      });
+    });
+
+    // Accessibility: keyboard close for mobile panel (Esc)
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && mobilePanel.classList.contains('open')){
+        mobilePanel.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobilePanel.setAttribute('aria-hidden', 'true');
+      }
+    });
+  </script>
+</body>
+</html>
